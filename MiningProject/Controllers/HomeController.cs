@@ -17,14 +17,14 @@ namespace MiningProject.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Pagina aplicatiei demo cu descriere.";
 
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Pagina de contact.";
 
             return View();
         }
