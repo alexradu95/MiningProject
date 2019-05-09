@@ -55,7 +55,7 @@
                                                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                                                 <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                                                 <a asp-action="Delete" asp-route-id="@item.ID">Delete</a> |
-                                                <a asp-action="SeeTrucks" asp-route-id="@item.ID">See Trucks</a>
+                                                <a asp-controller="Histories" asp-action="Index" asp-route-locationString="@item.LocationName">See trucks for this location</a>
                                             </td>
                                         </tr>
                                     }
@@ -75,7 +75,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                        </div>
+                        </divs
                         <!-- /.box-body -->
                     </div>
                 </div>
@@ -85,16 +85,4 @@
         </section>
         <!-- /.content -->
     </div>
-    <script>
-        $(function () {
-            $('#locationList').DataTable({
-                'paging': true,
-                'lengthChange': false,
-                'searching': false,
-                'ordering': true,
-                'info': true,
-                'autoWidth': false
-            })
-        })
-    </script>
 </body>

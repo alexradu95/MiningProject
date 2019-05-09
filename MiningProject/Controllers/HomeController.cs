@@ -15,16 +15,16 @@ namespace MiningProject.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult ShipmentsNumber()
         {
-            ViewData["Message"] = "Pagina aplicatiei demo cu descriere.";
+            ViewData["ShipmentsNumber"] = "23";
 
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult ActiveLocations()
         {
-            ViewData["Message"] = "Pagina de contact.";
+            ViewData["Message"] = "43";
 
             return View();
         }

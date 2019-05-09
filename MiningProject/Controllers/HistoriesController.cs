@@ -22,8 +22,8 @@ namespace MiningProject.Controllers
         // GET: Histories
         public async Task<IActionResult> Index()
         {
-            var historyList = await _context.Histories.Include(history => history.Truck).Include(history => history.Location).ToListAsync();
-            return View(historyList);
+            var historyList = _context.Histories.Include(history => history.Truck).Include(history => history.Location);
+            return View(await historyList.ToListAsync());
         }
 
         // GET: Histories/Details/5
@@ -55,7 +55,7 @@ namespace MiningProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID")] History history)
+        public async Task<IActionResult> Create([Bind("ID,ArrivalTime,DepartureTime")] History history)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace MiningProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("ID")] History history)
+        public async Task<IActionResult> Edit(long id, [Bind("ID,ArrivalTime,DepartureTime")] History history)
         {
             if (id != history.ID)
             {

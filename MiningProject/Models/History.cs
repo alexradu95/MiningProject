@@ -18,6 +18,7 @@ namespace MiningProject.Models
         public Location Location { get; set; }
         [ForeignKey("TruckID")]
         public Truck Truck { get; set; }
-        public DateTime TimeStamp { get; set; }
+        public DateTime ArrivalTime { get; set; }
+        public DateTime DepartureTime { get; set; }
     }
 }
