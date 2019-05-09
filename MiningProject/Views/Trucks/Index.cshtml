@@ -4,38 +4,79 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PlateNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TruckType)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PlateNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TruckType)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">List of trucks</h3>
+                            <a asp-action="Create">Create New Truck</a>
+                            <form asp-controller="Trucks" asp-action="Index">
+                                <p>
+                                    Plate Number: <input type="text" name="SearchString">
+                                    <input type="submit" value="Filter" />
+                                </p>
+                            </form>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="trucksList "class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>@Html.DisplayNameFor(model => model.PlateNumber)</th>
+                                        <th>@Html.DisplayNameFor(model => model.TruckType)</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PlateNumber)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TruckType)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                                                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>  
+                                <tfoot>
+                                    <tr>
+                                        <th>@Html.DisplayNameFor(model => model.PlateNumber)</th>
+                                        <th>@Html.DisplayNameFor(model => model.TruckType)</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <script>
+        $(function () {
+            $('#trucksList').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    </script>
+</body>

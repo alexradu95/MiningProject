@@ -20,9 +20,15 @@ namespace MiningProject.Controllers
         }
 
         // GET: Locations
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Locations.ToListAsync());
+            var locations = from m in _context.Locations select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                locations = locations.Where(s => s.LocationName.Contains(searchString));
+            }
+            return View(await locations.ToListAsync());
         }
 
         // GET: Locations/Details/5

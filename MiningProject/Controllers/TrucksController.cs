@@ -19,10 +19,17 @@ namespace MiningProject.Controllers
             _context = context;
         }
 
+
         // GET: Trucks
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(String searchString)
         {
-            return View(await _context.Trucks.ToListAsync());
+            var trucks = from m in _context.Trucks select m;
+
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                trucks = trucks.Where(s => s.PlateNumber.Contains(searchString));
+            }
+            return View(await trucks.ToListAsync());
         }
 
         // GET: Trucks/Details/5

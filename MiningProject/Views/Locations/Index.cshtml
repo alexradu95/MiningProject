@@ -1,47 +1,100 @@
 ﻿@model IEnumerable<MiningProject.Models.Location>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Mining Locations";
 }
 
-<h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.LocationName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Latitude)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Longitude)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LocationName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Latitude)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Longitude)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">List of trucks</h3>
+                            <a asp-action="Create">Create New Truck</a>
+                            <form asp-controller="Locations" asp-action="Index">
+                                <p>
+                                    Location Name: <input type="text" name="SearchString">
+                                    <input type="submit" value="Filter" />
+                                </p>
+                            </form>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="locationList " class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.LocationName)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Latitude)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Longitude)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.LocationName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Latitude)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Longitude)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                                                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a> |
+                                                <a asp-action="SeeTrucks" asp-route-id="@item.ID">See Trucks</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.LocationName)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Latitude)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Longitude)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <script>
+        $(function () {
+            $('#locationList').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    </script>
+</body>

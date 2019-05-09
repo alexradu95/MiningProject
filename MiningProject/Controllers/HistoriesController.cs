@@ -22,7 +22,8 @@ namespace MiningProject.Controllers
         // GET: Histories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Histories.ToListAsync());
+            var historyList = await _context.Histories.Include(history => history.Truck).Include(history => history.Location).ToListAsync();
+            return View(historyList);
         }
 
         // GET: Histories/Details/5
