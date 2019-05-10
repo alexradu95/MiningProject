@@ -20,9 +20,13 @@ namespace MiningProject.Controllers
         }
 
         // GET: Histories
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string locationString)
         {
-            var historyList = _context.Histories.Include(history => history.Truck).Include(history => history.Location);
+            var historyList = from m in _context.Histories.Include(history => history.Truck).Include(history => history.Location) select m;
+            if (!String.IsNullOrEmpty(locationString))
+            {
+                historyList = historyList.Where(s => s.Location.LocationName.Contains(locationString));
+            }
             return View(await historyList.ToListAsync());
         }
 

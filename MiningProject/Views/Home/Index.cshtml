@@ -6,14 +6,14 @@
                 <!-- small box -->
                 <div class="small-box bg-aqua">
                     <div class="inner">
-                        <h3>23</h3>
+                        <h3>@ViewData["TrucksNumber"]</h3>
 
-                        <p>Planned shipments</p>
+                        <p>Trucks</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-calendar"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/Trucks" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -21,16 +21,32 @@
                 <!-- small box -->
                 <div class="small-box bg-green">
                     <div class="inner">
-                        <h3>4</h3>
+                        <h3>@ViewData["LocationsNumber"]</h3>
 
                         <p>Active Locations</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-map"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/Locations" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <h3>@ViewData["HistoryEntries"]</h3>
+
+                        <p>History Entries</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                    </div>
+                    <a href="/Histories" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
             <!-- ./col -->
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
@@ -46,22 +62,6 @@
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-red">
-                    <div class="inner">
-                        <h3>65%</h3>
-
-                        <p>Profitability</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <!-- ./col -->
         </div>
         <!-- /.row -->
     </section>

@@ -10,6 +10,12 @@
                         <div class="box-header">
                             <h3 class="box-title">List of trucks and their locations</h3>
                             <a asp-action="Create">Create New History</a>
+                            <form asp-controller="Histories" asp-action="Index">
+                                <p>
+                                    Location number: <input type="text" name="LocationString">
+                                    <input type="submit" value="Filter" />
+                                </p>
+                            </form>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
