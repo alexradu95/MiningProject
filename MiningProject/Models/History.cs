@@ -14,9 +14,11 @@ namespace MiningProject.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long ID { get; set; }
-        [ForeignKey("LocationID")]
+        [ForeignKey("Location")]
+        public long LocationID { get; set; }
         public Location Location { get; set; }
-        [ForeignKey("TruckID")]
+        [ForeignKey("Truck")]
+        public long TruckID { get; set; }
         public Truck Truck { get; set; }
         public DateTime ArrivalTime { get; set; }
         public DateTime DepartureTime { get; set; }

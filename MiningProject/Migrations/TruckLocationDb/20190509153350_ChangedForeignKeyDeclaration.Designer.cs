@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiningProject.DataContexts;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -9,9 +10,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MiningProject.Migrations.TruckLocationDb
 {
     [DbContext(typeof(TruckLocationDbContext))]
-    partial class TruckLocationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190509153350_ChangedForeignKeyDeclaration")]
+    partial class ChangedForeignKeyDeclaration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,15 +30,19 @@ namespace MiningProject.Migrations.TruckLocationDb
 
                     b.Property<DateTime>("DepartureTime");
 
-                    b.Property<long>("LocationID");
+                    b.Property<int>("LocationID");
 
-                    b.Property<long>("TruckID");
+                    b.Property<long?>("LocationID1");
+
+                    b.Property<int>("TruckID");
+
+                    b.Property<long?>("TruckID1");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("LocationID");
+                    b.HasIndex("LocationID1");
 
-                    b.HasIndex("TruckID");
+                    b.HasIndex("TruckID1");
 
                     b.ToTable("History");
                 });
@@ -81,13 +87,11 @@ namespace MiningProject.Migrations.TruckLocationDb
                 {
                     b.HasOne("MiningProject.Models.Location", "Location")
                         .WithMany()
-                        .HasForeignKey("LocationID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("LocationID1");
 
                     b.HasOne("MiningProject.Models.Truck", "Truck")
                         .WithMany()
-                        .HasForeignKey("TruckID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("TruckID1");
                 });
 #pragma warning restore 612, 618
         }

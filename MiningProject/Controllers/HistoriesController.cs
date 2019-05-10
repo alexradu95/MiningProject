@@ -47,6 +47,10 @@ namespace MiningProject.Controllers
         // GET: Histories/Create
         public IActionResult Create()
         {
+            var locationList = _context.Locations.ToList();
+            ViewData["Locations"] = new SelectList(locationList, "ID", "LocationName");
+            var truckList = _context.Trucks.ToList();
+            ViewData["Trucks"] = new SelectList(truckList, "ID", "PlateNumber");
             return View();
         }
 
@@ -55,7 +59,7 @@ namespace MiningProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,ArrivalTime,DepartureTime")] History history)
+        public async Task<IActionResult> Create([Bind("ID,ArrivalTime,DepartureTime,TruckID,LocationID")] History history)
         {
             if (ModelState.IsValid)
             {
